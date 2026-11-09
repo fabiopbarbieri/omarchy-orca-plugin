@@ -1,0 +1,49 @@
+{
+  "manifestVersion": 2,
+  "id": "omarchy",
+  "name": "Omarchy",
+  "version": "1.0.0",
+  "description": "Follows your Omarchy theme: app, editor syntax and terminal colors, updated on every theme switch.",
+  "license": "MIT",
+  "author": { "name": "fabiopbarbieri" },
+  "repository": "https://github.com/fabiopbarbieri/omarchy-orca-plugin",
+  "engines": { "orca": ">=1.4.249" },
+  "execution": "trusted-worker",
+  "pluginApi": 1,
+  "main": "src/worker.mjs",
+  "capabilities": [{ "kind": "settings:own" }, { "kind": "appearance:write" }],
+  "contributes": {
+    "statusBarItems": [
+      { "id": "theme", "text": "Omarchy", "icon": "layers", "tooltip": "Omarchy theme", "command": "omarchy.reapply" }
+    ],
+    "commands": [
+      { "id": "omarchy.reapply", "title": "Omarchy: Reapply current theme" },
+      { "id": "omarchy.toggleFollow", "title": "Omarchy: Toggle following the theme" }
+    ],
+    "settings": [
+      { "key": "follow", "title": "Follow the Omarchy theme", "type": "boolean", "default": true,
+        "description": "Applies the current Omarchy theme and follows every switch. When off, Orca keeps whatever theme you pick." },
+      { "key": "mode", "title": "Light or dark", "type": "string", "default": "auto",
+        "enum": ["auto", "dark", "light"], "enumLabels": ["Same as the Omarchy theme", "Always dark", "Always light"],
+        "description": "How Orca classifies the theme. Automatic reads it from the Omarchy theme." },
+      { "key": "sidebar", "title": "Sidebars", "type": "boolean", "default": true,
+        "description": "Projects, worktrees and host badge. When off, Orca derives these from the base colors." },
+      { "key": "tabs", "title": "Tabs and dividers", "type": "boolean", "default": true,
+        "description": "Tab bar, active tab and pane dividers." },
+      { "key": "chat", "title": "Chat", "type": "boolean", "default": true,
+        "description": "User messages, inline code, code blocks and selection." },
+      { "key": "links", "title": "Links", "type": "boolean", "default": true,
+        "description": "Link color in text." },
+      { "key": "diff", "title": "Diff", "type": "boolean", "default": true,
+        "description": "Added and removed lines." },
+      { "key": "git", "title": "Git decorations", "type": "boolean", "default": true,
+        "description": "Colors for new, modified, deleted and ignored files in the tree." },
+      { "key": "charts", "title": "Charts", "type": "boolean", "default": true,
+        "description": "Chart palette." },
+      { "key": "syntax", "title": "Editor syntax", "type": "boolean", "default": true,
+        "description": "Syntax colors from Omarchy's VS Code theme. When off, the editor uses Orca's default syntax." },
+      { "key": "terminal", "title": "Terminal ANSI palette", "type": "boolean", "default": true,
+        "description": "The 16 terminal colors. When off, only background, text, cursor and selection follow Omarchy." }
+    ]
+  }
+}
