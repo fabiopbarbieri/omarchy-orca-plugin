@@ -1,8 +1,9 @@
 {
   "manifestVersion": 2,
   "id": "omarchy",
+  "publisher": "fabiopbarbieri",
   "name": "Omarchy",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Follows your Omarchy theme: app, editor syntax and terminal colors, updated on every theme switch.",
   "license": "MIT",
   "author": { "name": "fabiopbarbieri" },
