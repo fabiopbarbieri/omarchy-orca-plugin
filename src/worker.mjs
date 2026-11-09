@@ -110,7 +110,12 @@ function build(p, vs, cfg) {
   const lighter = c('lighter_background', 'selection'), sel = c('selection', 'lighter_background')
   const muted = c('muted', 'dark_foreground'), bright = c('bright_foreground', 'foreground')
   const [red, green, yellow, cyan, magenta] = ['red', 'green', 'yellow', 'cyan', 'magenta'].map((k) => c(k))
-  const alpha = (hex, a) => hex.slice(0, 7) + a
+  // Expands #rgb/#rgba to #rrggbb and drops any alpha before adding ours.
+  const alpha = (hex, a) => {
+    const h = hex.slice(1)
+    const rgb = h.length <= 4 ? [...h.slice(0, 3)].map((d) => d + d).join('') : h.slice(0, 6)
+    return `#${rgb}${a}`
+  }
 
   const tokens = {
     '--background': bg, '--editor-surface': bg, '--foreground': fg,
